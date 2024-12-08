@@ -25,27 +25,37 @@ Frequency: Data points recorded every 250 milliseconds.
 Fields:
 
 ^ Time (ms): Elapsed time in milliseconds since recording started.
+
 ^ FHR (bpm): Fetal heart rate measured in beats per minute.
+
 ^ UC (TOCO): Numerical representation of uterine contractions.
 
 ## Tasks
 
 1) Graphs:
+   
 ^ Time vs FHR
+
 ^ Time vs UC
 
-2) FHR Analysis:
+3) FHR Analysis:
+   
 ^ Divide data into 3.75-second epochs and calculate average FHR in bpm and pulse intervals.
 
-3) UC Peak Detection:
+5) UC Peak Detection:
+   
 ^ Identify peaks using scipy and measure peak widths.
+
 ^ Count peaks with widths exceeding 30 seconds and calculate their average duration.
 
 ## Deliverables
 
 ^ Plots for FHR and UC.
+
 ^ Detailed FHR analysis over epochs.
+
 ^ Peak detection analysis for UC, including counts and average durations.
+
 ^ Python code for all tasks.
 
 # Problem Statement 2: Image Segmentation Model
@@ -59,12 +69,15 @@ Develop an image segmentation model to accurately identify and isolate regions i
 1) Dataset: Use or generate a dataset for segmentation tasks (e.g., medical images, satellite imagery).
 
 2) Model:
+   
 ^ Options include traditional techniques (thresholding, edge detection) or deep learning models (e.g., U-Net, Mask R-CNN).
 
-3) Evaluation:
+4) Evaluation:
+   
 ^ Use metrics like IoU (Intersection over Union) or Dice Coefficient.
 
-4) Visualization:
+6) Visualization:
+   
 Compare original images with segmented outputs to validate performance.
 
 ## Deliverables
