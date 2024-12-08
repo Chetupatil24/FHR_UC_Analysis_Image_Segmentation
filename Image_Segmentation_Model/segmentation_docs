@@ -1,0 +1,39 @@
+# Medical Image Segmentation Project Documentation
+### Introduction
+This document outlines the approach taken to perform image segmentation on a dataset of medical images using the U-Net architecture. The project focuses on training a segmentation model to identify regions of interest (e.g., organs, anomalies) in grayscale medical images and masks.
+
+### Dataset Overview
+The dataset consists of medical images and corresponding masks. Each image is paired with a segmentation mask to indicate the area of interest.
+
+Training Set: 213 images
+Validation Set: 54 images
+Image Size: Resized to 128x128 pixels for model input
+Both the training and validation sets were preprocessed to normalize pixel values and resize the images.
+
+### Model Architecture: U-Net
+The U-Net architecture is used for this project due to its effectiveness in biomedical image segmentation tasks. The model is designed with an encoder-decoder structure to capture spatial and contextual information.
+
+### Model Overview:
+Encoder: A series of convolutional layers with max-pooling to downsample the input image and extract features.
+Decoder: Transposed convolutional layers to upsample the feature maps and reconstruct the segmented image.
+Skip Connections: Used to retain spatial information by combining encoder and decoder outputs.
+
+### Model Training
+The model was trained on 213 training images, with 54 validation images, using the following configuration:
+
+Epochs: 25
+Batch Size: 16
+Optimizer: Adam
+Loss Function: Binary Crossentropy
+
+### Results
+After training, the model achieved satisfactory accuracy on the validation set. Below is the time per step and the overall training time:
+
+Training Step Time: 783ms/step
+
+### Visualization of Results
+After training, the model's performance was evaluated by visualizing predictions on validation images. The following example demonstrates the comparison between the original image, the ground truth mask, and the predicted mask.
+
+### Conclusion
+The U-Net model demonstrated strong performance in segmenting medical images. Through the 25 epochs of training with a batch size of 16, the model was able to accurately predict the segmentation masks, as evidenced by the visualized results. Future improvements could include experimenting with deeper models or using advanced techniques such as data augmentation to increase the robustness of the model.
+

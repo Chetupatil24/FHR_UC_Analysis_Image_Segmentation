@@ -1,0 +1,86 @@
+# Detailed Explanation of the Solution for FHR and UC Analysis
+
+### Introduction
+The task involved analyzing a dataset containing Fetal Heart Rate (FHR) and Uterine Contractions (UC) data. The key objectives were:
+
+* Plotting the time series for FHR and UC.
+* Analyzing FHR over 3.75-second epochs and calculating both beats per minute (BPM) and pulse interval in milliseconds.
+* Performing peak detection on the UC data and analyzing peaks with a width greater than 30 seconds.
+
+The following writeup provides a detailed explanation of the solution, alternative approaches, and a comparison between different methods.
+
+### Dataset Overview
+The dataset consists of time series data recorded at 250-millisecond intervals, with the following fields:
+
+* Time(ms): Time elapsed since the start of the recording, in milliseconds.
+* FHR (BPM): Fetal Heart Rate in beats per minute.
+* UC (TOCO): Uterine contraction values, representing the intensity of contractions.
+
+# Objective 1: Plotting FHR and UC over Time
+### Approach:
+
+* We used Matplotlib to plot two separate graphs: one for FHR vs Time and another for UC vs Time.
+* The purpose of these plots was to visualize trends in fetal heart rate and uterine contractions over time.
+
+### Plot Description:
+
+* The FHR plot displays the fetal heart rate over time, showing changes in the rate throughout the test.
+* The UC plot illustrates the intensity of uterine contractions over time, helping identify peaks that can indicate the strength and occurrence of contractions.
+
+### Other Approaches:
+
+* We could have used Seaborn for enhanced visualization, but Matplotlib provides sufficient functionality for this task. Additionally, we could have plotted both graphs on the same axis for comparison, but separating them ensured clarity.
+
+# Objective 2: FHR Analysis over 3.75-Second Epochs
+### Approach:
+
+* The Non-Stress Test (NST) reading was divided into 3.75-second epochs, corresponding to 15 data points (since the data is sampled every 250 milliseconds).
+* For each epoch, the average FHR (beats per minute) was calculated. Additionally, the pulse interval was derived using the formula:
+
+Pulse Interval (ms) = 6000 / FHR (BPM)
+ 
+* This pulse interval calculation allowed for further analysis of heart rate variability over time.
+
+### Why Epochs Matter:
+
+* Epoch analysis breaks down the data into smaller, more manageable segments, providing insights into short-term changes in fetal heart rate.
+* The variability in pulse interval is an important marker in fetal monitoring, as larger fluctuations might indicate stress or other health factors.
+
+### Other Approaches:
+
+* An alternative would be to vary the epoch length (e.g., using 2-second or 5-second intervals) to capture different temporal patterns. However, the specified 3.75-second interval aligns with the medical standard for NST analysis.
+* For more advanced analysis, we could apply time-series smoothing techniques (e.g., rolling averages or exponential smoothing) to reduce noise and better detect patterns.
+
+# Objective 3: UC Peak Detection and Analysis
+### Approach:
+
+* We applied SciPy’s find_peaks function to detect peaks in the UC (TOCO) data. Peaks represent the occurrence of contractions, and their width provides information about contraction duration.
+* For each detected peak, we measured the width at half-height using peak_widths.
+Peaks wider than 30 seconds (120 data points) were counted, and the average duration of these wide peaks was calculated.
+
+### Results:
+
+* The analysis revealed an average duration of approximately 45.34 seconds for contractions that lasted more than 30 seconds. This information can be valuable for assessing contraction patterns during labor.
+
+### Other Approaches:
+
+* We could use machine learning models (such as decision trees) to classify contraction severity based on features like peak height and width.
+* Another option is applying wavelet transform analysis, which is effective for analyzing non-stationary signals like uterine contractions.
+
+# Challenges and Assumptions
+
+### Handling Missing Data:
+* The dataset did not appear to have missing data, but in real-world scenarios, handling missing values (e.g., through interpolation or forward filling) would be crucial.
+
+### Thresholds in Peak Detection:
+* The height threshold for peak detection was set at 10 based on the UC values. This threshold may need adjustment depending on the dataset's range. An automated method (e.g., using statistical thresholds like the mean + standard deviation) could improve peak detection accuracy.
+
+# Comparing Approaches
+
+* Different segmentation approaches offer unique strengths and weaknesses. Basic plotting is simple and easy to interpret but may miss details in complex data. Epoch-based FHR analysis captures short-term variability but requires manual adjustment of epoch length. Peak detection effectively analyzes contraction durations but may overlook smaller peaks. Advanced ML techniques capture nuanced patterns but need more computational resources. Wavelet transform is excellent for non-stationary signals but is more complex and requires deeper mathematical understanding. Each method has its trade-offs depending on the task at hand.
+
+
+### Conclusion
+* This project provides a systematic way to analyze fetal heart rate and uterine contractions during a non-stress test. By leveraging both time-series visualization and peak detection techniques, we gained insights into heart rate variability and contraction patterns.
+
+* The approach used here is simple yet effective, but there is room for further exploration with more advanced techniques, particularly in refining peak detection and using machine learning to predict fetal distress. For now, the solution achieves the key objectives of analyzing the data with clear and actionable insights.
