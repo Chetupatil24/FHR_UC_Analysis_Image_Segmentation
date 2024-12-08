@@ -71,6 +71,4 @@ Compare original images with segmented outputs to validate performance.
 ^ Model and training code.
 ^ Evaluation metrics and results.
 ^ Visualization of segmentation outputs.
-# FHR-and-UC-Analysis-Image-Segmentation-Model-Project
-# FHR_UC_Analysis_Image_Segmentation
-# FHR_UC_Analysis_Image_Segmentation
+
